@@ -65,12 +65,15 @@ def main(args):
                     map(lambda d: d['value'], filter(lambda h: h['name'] == 'From', headers)))
                 subject = next(
                     map(lambda d: d['value'], filter(lambda h: h['name'] == 'Subject', headers)))
-                out.writerow({'from': from_addr, 'subject': subject})
+                out.writerow({'From': from_addr, 'Subject': subject})
                 total += 1
             print("Wrote", total, "emails")
 
-            results = service.users().messages().list(
-                userId='me', pageToken=results['nextPageToken']).execute()
+            if 'nextPageToken' in results:
+                results = service.users().messages().list(
+                    userId='me', pageToken=results['nextPageToken']).execute()
+            else:
+                break
         print("Finished, wrote", total, "emails")
 
 
