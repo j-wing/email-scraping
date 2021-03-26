@@ -76,7 +76,8 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-q", required=False)
+    parser.add_argument(
+        "-q", help="Search query using Gmail search syntax.", required=False)
     parser.add_argument("--label", required=False)
     parser.add_argument("--out", required=False, default="email.csv")
 
