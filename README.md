@@ -1,3 +1,5 @@
+Exports the "From" and "Subject" headers from emails in a gmail inbox to a csv. Optionally filter using a query that follows gmail search syntax.
+
 # Setup
 
 1. Clone the repo and `pip install -r requirements.txt`.
