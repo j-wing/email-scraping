@@ -55,6 +55,8 @@ def main(args):
         out.writeheader()
         results = service.users().messages().list(
             userId='me', q=args.q).execute()
+        print("Approximately %s results" %
+              results.get('resultSizeEstimate', 0))
         total = 0
         while results.get('messages', []):
             for raw_msg in results['messages']:
@@ -82,7 +84,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-q", help="Search query using Gmail search syntax.", required=False)
     parser.add_argument("--label", required=False)
-    parser.add_argument("--out", required=False, default="email.csv")
+    parser.add_argument("--out", required=False, default="emails.csv")
 
     main(parser.parse_args())
 # [END gmail_quickstart]
